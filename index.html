@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EavesText サポート</title>
+<style>
+  :root {
+    --accent: #0a84ff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --bg: #ffffff;
+    --card: #f5f5f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --bg: #000000;
+      --card: #1c1c1e;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.8;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+  header { padding: 72px 0 40px; text-align: center; }
+  .icon {
+    width: 96px; height: 96px; border-radius: 22px;
+    background: linear-gradient(135deg, #0a84ff, #5e5ce6);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 48px; margin-bottom: 20px;
+  }
+  h1 { font-size: 40px; letter-spacing: -0.02em; }
+  .tagline { color: var(--muted); font-size: 19px; margin-top: 8px; }
+  h2 { font-size: 24px; margin: 48px 0 16px; letter-spacing: -0.01em; }
+  p { margin-bottom: 12px; }
+  .card {
+    background: var(--card); border-radius: 14px;
+    padding: 20px 24px; margin-bottom: 12px;
+  }
+  .card h3 { font-size: 16px; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 15px; margin: 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--card);
+    color: var(--muted); font-size: 13px; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="icon">&#128483;</div>
+    <h1>EavesText</h1>
+    <p class="tagline">Mac の会議音声を、その場で議事録に。完全ローカルの AI 文字起こし</p>
+  </header>
+
+  <h2>EavesText について</h2>
+  <p>
+    EavesText は、Mac で鳴っている音声（Zoom・Google Meet・Teams などの会議音声）と
+    マイクを同時に録音し、AI が完全ローカルで文字起こしして Markdown の議事録を作る
+    macOS アプリです。音声やテキストがクラウドへ送信されることはありません。
+  </p>
+
+  <h2>よくある質問</h2>
+  <div class="card">
+    <h3>録音した音声はどこかに送信されますか？</h3>
+    <p>いいえ。録音・文字起こし・保存はすべてあなたの Mac の中だけで行われます。
+       初回セットアップ時の音声認識モデルのダウンロードのみ通信が発生します。</p>
+  </div>
+  <div class="card">
+    <h3>会議アプリとの連携設定は必要ですか？</h3>
+    <p>不要です。Mac 上で再生されている音声を直接キャプチャするため、
+       どの会議アプリでもそのまま使えます。Bot の招待も要りません。</p>
+  </div>
+  <div class="card">
+    <h3>イヤホンで会議していても相手の声を録音できますか？</h3>
+    <p>できます。スピーカーの音をマイクで拾う方式ではなく、音声データを
+       直接取得するため、イヤホン使用時もクリアに録音されます。</p>
+  </div>
+  <div class="card">
+    <h3>必要な権限は何ですか？</h3>
+    <p>マイクと「画面収録とシステム音声の録音」の許可が必要です。
+       いずれも録音を開始するときにのみ使用され、録音中はメニューバーに
+       常にインジケータが表示されます。</p>
+  </div>
+  <div class="card">
+    <h3>長時間の会議でも使えますか？</h3>
+    <p>使えます。録音は一定時間ごとに区切って逐次文字起こしされるため、
+       数時間の会議でも停止後すぐに議事録が完成します。</p>
+  </div>
+  <div class="card">
+    <h3>対応環境は？</h3>
+    <p>macOS 14.2 以降（Apple Silicon / Intel 両対応）。</p>
+  </div>
+
+  <h2>お問い合わせ</h2>
+  <p>
+    不具合報告・ご要望・その他のお問い合わせは
+    <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a> までお願いします。
+  </p>
+
+  <h2>プライバシー</h2>
+  <p><a href="privacy.html">プライバシーポリシー / Privacy Policy</a></p>
+
+  <footer>&copy; 2026 Kazuhiro Kotsutsumi</footer>
+</div>
+</body>
+</html>

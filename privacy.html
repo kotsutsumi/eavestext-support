@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EavesText プライバシーポリシー / Privacy Policy</title>
+<style>
+  :root {
+    --accent: #0a84ff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --bg: #ffffff;
+    --card: #f5f5f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --bg: #000000;
+      --card: #1c1c1e;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.8;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  h1 { font-size: 32px; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .updated { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+  h2 { font-size: 22px; margin: 40px 0 12px; }
+  h3 { font-size: 17px; margin: 24px 0 8px; }
+  p, li { margin-bottom: 10px; }
+  ul { padding-left: 24px; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid var(--card); margin: 48px 0; }
+  footer {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--card);
+    color: var(--muted); font-size: 13px; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <p><a href="index.html">&larr; EavesText サポート</a></p>
+  <h1>プライバシーポリシー / Privacy Policy</h1>
+  <p class="updated">最終更新日 / Last updated: 2026-06-12</p>
+
+  <h2>日本語</h2>
+  <p>EavesText（以下「本アプリ」）は、ユーザーのプライバシーを最優先に設計されています。</p>
+
+  <h3>収集する情報</h3>
+  <p><strong>本アプリは、いかなる個人情報・利用データも収集しません。</strong></p>
+  <ul>
+    <li>録音された音声、文字起こし結果、議事録は、すべてユーザーの Mac 内にのみ保存されます</li>
+    <li>音声やテキストが開発者または第三者のサーバーへ送信されることはありません</li>
+    <li>アナリティクス、トラッキング、広告識別子は一切使用していません</li>
+    <li>アカウント登録は不要です</li>
+  </ul>
+
+  <h3>インターネット接続について</h3>
+  <p>
+    本アプリがインターネットへ接続するのは、初回セットアップ時に音声認識モデル
+    （オープンソースの Whisper モデル）を HuggingFace（huggingface.co）から
+    ダウンロードする場合のみです。この通信に個人情報は含まれません。
+    モデルのダウンロード後、本アプリは完全にオフラインで動作できます。
+  </p>
+
+  <h3>マイクとシステム音声へのアクセス</h3>
+  <p>
+    本アプリは、ユーザーが録音を開始した場合にのみ、macOS の許可に基づいて
+    マイクおよびシステム音声にアクセスします。録音中はメニューバーに
+    インジケータが常時表示されます。録音が自動的に開始されることはありません。
+  </p>
+
+  <h3>データの削除</h3>
+  <p>
+    すべてのデータはユーザーの Mac 内（ユーザーが指定した保存先フォルダ）に
+    保存されており、アプリ内の削除操作または Finder からいつでも完全に削除できます。
+  </p>
+
+  <h3>お問い合わせ</h3>
+  <p>本ポリシーに関するお問い合わせ: <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a></p>
+
+  <hr>
+
+  <h2>English</h2>
+  <p>EavesText ("the App") is designed with user privacy as the top priority.</p>
+
+  <h3>Information We Collect</h3>
+  <p><strong>The App does not collect any personal information or usage data.</strong></p>
+  <ul>
+    <li>Recordings, transcripts, and minutes are stored only on the user's Mac</li>
+    <li>Audio and text are never transmitted to the developer or any third party</li>
+    <li>No analytics, tracking, or advertising identifiers are used</li>
+    <li>No account is required</li>
+  </ul>
+
+  <h3>Network Access</h3>
+  <p>
+    The App connects to the internet only to download the open-source Whisper
+    speech recognition model from HuggingFace (huggingface.co) during initial
+    setup. This request contains no personal information. After the model is
+    downloaded, the App can operate fully offline.
+  </p>
+
+  <h3>Microphone and System Audio Access</h3>
+  <p>
+    The App accesses the microphone and system audio only when the user starts
+    a recording, based on macOS permissions. A menu bar indicator is always
+    visible while recording. Recording never starts automatically.
+  </p>
+
+  <h3>Data Deletion</h3>
+  <p>
+    All data is stored on the user's Mac (in the user-selected storage folder)
+    and can be permanently deleted at any time from within the App or via Finder.
+  </p>
+
+  <h3>Contact</h3>
+  <p>For questions about this policy: <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a></p>
+
+  <footer>&copy; 2026 Kazuhiro Kotsutsumi</footer>
+</div>
+</body>
+</html>
