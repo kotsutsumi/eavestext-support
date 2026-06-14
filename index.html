@@ -101,7 +101,7 @@
   .final .soon::before { background:#fff; }
 
   /* ---- hero ---- */
-  .hero { padding:84px 0 40px; text-align:center; }
+  .hero { padding-top:96px; padding-bottom:56px; text-align:center; }
   .eyebrow {
     display:inline-block; font-weight:700; font-size:13px; letter-spacing:.06em;
     padding:7px 14px; border-radius:999px;
@@ -115,8 +115,10 @@
   .hero-shot { margin:48px auto 0; max-width:960px; border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); }
 
   /* ---- sections ---- */
-  section { padding:56px 0; }
-  .section-head { text-align:center; max-width:640px; margin:0 auto 36px; }
+  /* section に class="wrap" が付くため、.wrap の padding:0 24px に負けないよう
+     詳細度を上げて縦の余白を指定する（左右 24px は .wrap が担当） */
+  section.wrap { padding-top:clamp(52px,7vw,80px); padding-bottom:clamp(52px,7vw,80px); }
+  .section-head { text-align:center; max-width:640px; margin:0 auto 44px; }
   h2 { font-family:var(--display); font-weight:900; letter-spacing:-.01em; font-size:clamp(26px,4vw,38px); line-height:1.3; }
   .section-head p { color:var(--muted); margin-top:12px; font-size:17px; }
 
@@ -125,7 +127,7 @@
   .feature:hover { transform:translateY(-4px); }
   .feature img { width:100%; aspect-ratio:1/1; object-fit:cover; }
 
-  .split { display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
+  .split { display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center; }
   .split.rev .media { order:2; }
   .media { border-radius:18px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); }
   .split h2 { text-align:left; }
@@ -160,6 +162,10 @@
   .info p { color:var(--muted); font-size:15px; }
   .final a.link, .info a { color:inherit; }
   footer { border-top:1px solid var(--border); padding:30px 0 50px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--muted); }
+  footer a:hover { color:var(--blue); }
+  .foot-links { margin-bottom:8px; }
+  .foot-links a { margin:0 8px; }
 
   /* ---- reveal anim ---- */
   .js .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
@@ -315,7 +321,13 @@
   </section>
 </main>
 
-<footer>&copy; 2026 Kazuhiro Kotsutsumi</footer>
+<footer>
+  <p class="foot-links">
+    <a href="privacy.html" data-i18n="footprivacy">プライバシーポリシー</a>
+    <a href="mailto:kotsutsumi@gmail.com" data-i18n="footcontact">お問い合わせ</a>
+  </p>
+  <p>&copy; 2026 Kazuhiro Kotsutsumi</p>
+</footer>
 
 <script>
   /* ---- i18n: 日本語は HTML 既定値、英語は辞書で差し替え ---- */
@@ -359,7 +371,9 @@
       contacth: "Contact",
       contactp: 'For bug reports, requests, or any questions, please email <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a>.',
       privacyh: "Privacy",
-      privacyp: 'See the <a href="privacy.html">Privacy Policy</a>. EavesText collects no data.'
+      privacyp: 'See the <a href="privacy.html">Privacy Policy</a>. EavesText collects no data.',
+      footprivacy: "Privacy Policy",
+      footcontact: "Contact"
     };
 
     var nodes = document.querySelectorAll('[data-i18n]');
