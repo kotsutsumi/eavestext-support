@@ -47,10 +47,8 @@
   html { scroll-behavior:smooth; }
   body {
     font-family:var(--body); color:var(--ink); background:var(--bg);
-    line-height:1.8; -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    line-height:1.8; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  /* gradient glow backdrop */
   body::before {
     content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
@@ -59,30 +57,24 @@
   }
   a { color:var(--blue); text-decoration:none; }
   a:hover { text-decoration:underline; }
-  img { display:block; max-width:100%; }
+  img { display:block; max-width:100%; height:auto; }
   .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 
   /* ---- nav ---- */
   nav {
     position:sticky; top:0; z-index:50;
-    backdrop-filter:saturate(180%) blur(14px);
-    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px);
     background:color-mix(in srgb, var(--bg) 78%, transparent);
     border-bottom:1px solid var(--border);
   }
-  .nav-in { display:flex; align-items:center; justify-content:space-between; height:62px; }
+  .nav-in { display:flex; align-items:center; justify-content:space-between; height:62px; gap:12px; }
   .brand { display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:900; font-size:20px; letter-spacing:-.01em; }
   .brand img { width:30px; height:30px; border-radius:8px; }
-  .btn {
-    display:inline-flex; align-items:center; gap:8px;
-    font-weight:700; font-size:15px; line-height:1;
-    padding:12px 20px; border-radius:999px; border:0; cursor:pointer;
-    color:#fff; background:var(--grad);
-    box-shadow:0 10px 24px -10px rgba(46,107,230,.7);
-    transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .btn:hover { transform:translateY(-2px); text-decoration:none; box-shadow:0 16px 30px -10px rgba(46,107,230,.8); }
-  .btn.small { padding:9px 16px; font-size:14px; }
+  .nav-right { display:flex; align-items:center; gap:12px; }
+  .lang { display:inline-flex; border:1px solid var(--border); border-radius:999px; overflow:hidden; background:var(--card); }
+  .lang button { border:0; background:transparent; color:var(--muted); font:700 13px var(--body); padding:8px 13px; cursor:pointer; transition:color .15s ease; }
+  .lang button.active { color:#fff; background:var(--grad); }
+
   .btn-ghost {
     display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:15px;
     padding:12px 20px; border-radius:999px; color:var(--ink);
@@ -90,27 +82,37 @@
     transition:transform .18s ease, border-color .18s ease;
   }
   .btn-ghost:hover { transform:translateY(-2px); text-decoration:none; border-color:var(--blue); }
+  .btn { /* 公開後の App Store リンク用に温存 */
+    display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:15px; line-height:1;
+    padding:12px 20px; border-radius:999px; border:0; cursor:pointer; color:#fff; background:var(--grad);
+    box-shadow:0 10px 24px -10px rgba(46,107,230,.7); transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover { transform:translateY(-2px); text-decoration:none; }
+  /* 公開前ステータス（審査通過後は App Store リンクの .btn に差し替え） */
+  .soon {
+    display:inline-flex; align-items:center; gap:8px; cursor:default;
+    font-weight:700; font-size:15px; line-height:1; padding:12px 20px; border-radius:999px;
+    color:var(--blue); background:color-mix(in srgb,var(--blue) 12%, transparent);
+    border:1px solid color-mix(in srgb,var(--blue) 30%, transparent);
+  }
+  .soon.small { padding:9px 16px; font-size:14px; }
+  .soon::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--grad); flex:none; }
+  .final .soon { color:#fff; background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.55); }
+  .final .soon::before { background:#fff; }
 
   /* ---- hero ---- */
   .hero { padding:84px 0 40px; text-align:center; }
   .eyebrow {
-    display:inline-block; font-weight:700; font-size:13px; letter-spacing:.08em;
-    text-transform:uppercase; padding:7px 14px; border-radius:999px;
-    color:var(--blue); background:color-mix(in srgb,var(--blue) 12%, transparent);
-    margin-bottom:22px;
+    display:inline-block; font-weight:700; font-size:13px; letter-spacing:.06em;
+    padding:7px 14px; border-radius:999px;
+    color:var(--blue); background:color-mix(in srgb,var(--blue) 12%, transparent); margin-bottom:22px;
   }
-  h1 {
-    font-family:var(--display); font-weight:900; letter-spacing:-.02em;
-    font-size:clamp(34px,6vw,60px); line-height:1.18;
-  }
+  h1 { font-family:var(--display); font-weight:900; letter-spacing:-.02em; font-size:clamp(34px,6vw,60px); line-height:1.18; }
   h1 .grad { background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
-  .lead { color:var(--muted); font-size:clamp(16px,2.3vw,20px); max-width:640px; margin:20px auto 0; }
-  .cta { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:32px; }
+  .lead { color:var(--muted); font-size:clamp(16px,2.3vw,20px); max-width:660px; margin:20px auto 0; }
+  .cta { display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:32px; }
   .req { color:var(--muted); font-size:13px; margin-top:16px; }
-  .hero-shot {
-    margin:48px auto 0; max-width:960px; border-radius:20px; overflow:hidden;
-    border:1px solid var(--border); box-shadow:var(--shadow);
-  }
+  .hero-shot { margin:48px auto 0; max-width:960px; border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); }
 
   /* ---- sections ---- */
   section { padding:56px 0; }
@@ -119,11 +121,7 @@
   .section-head p { color:var(--muted); margin-top:12px; font-size:17px; }
 
   .features { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-  .feature {
-    border-radius:18px; overflow:hidden; border:1px solid var(--border);
-    background:var(--card); box-shadow:var(--shadow);
-    transition:transform .22s ease;
-  }
+  .feature { border-radius:18px; overflow:hidden; border:1px solid var(--border); background:var(--card); box-shadow:var(--shadow); transition:transform .22s ease; }
   .feature:hover { transform:translateY(-4px); }
   .feature img { width:100%; aspect-ratio:1/1; object-fit:cover; }
 
@@ -135,42 +133,32 @@
   .ticks { list-style:none; margin-top:18px; display:grid; gap:10px; }
   .ticks li { position:relative; padding-left:30px; font-size:16px; }
   .ticks li::before {
-    content:""; position:absolute; left:0; top:.55em; width:18px; height:18px;
-    border-radius:50%; background:var(--grad);
+    content:""; position:absolute; left:0; top:.55em; width:18px; height:18px; border-radius:50%; background:var(--grad);
     -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>") center/14px no-repeat;
             mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>") center/14px no-repeat;
   }
 
   /* ---- faq ---- */
   .faq { display:grid; gap:12px; max-width:760px; margin:0 auto; }
-  details.card {
-    background:var(--card); border:1px solid var(--border); border-radius:14px;
-    padding:0 22px; box-shadow:var(--shadow);
-  }
-  details.card summary {
-    list-style:none; cursor:pointer; font-weight:700; font-size:16px;
-    padding:18px 0; display:flex; justify-content:space-between; align-items:center; gap:16px;
-  }
+  details.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:0 22px; box-shadow:var(--shadow); }
+  details.card summary { list-style:none; cursor:pointer; font-weight:700; font-size:16px; padding:18px 0; display:flex; justify-content:space-between; align-items:center; gap:16px; }
   details.card summary::-webkit-details-marker { display:none; }
-  details.card summary::after { content:"+"; color:var(--blue); font-size:22px; font-weight:700; transition:transform .2s ease; }
+  details.card summary::after { content:"+"; color:var(--blue); font-size:22px; font-weight:700; transition:transform .2s ease; flex:none; }
   details.card[open] summary::after { transform:rotate(45deg); }
   details.card .a { color:var(--muted); font-size:15px; padding:0 0 18px; }
 
   /* ---- final cta ---- */
-  .final {
-    text-align:center; border-radius:26px; padding:56px 28px; color:#fff;
-    background:var(--grad); box-shadow:var(--shadow); position:relative; overflow:hidden;
-  }
+  .final { text-align:center; border-radius:26px; padding:56px 28px; color:#fff; background:var(--grad); box-shadow:var(--shadow); position:relative; overflow:hidden; }
   .final h2 { color:#fff; }
   .final p { color:rgba(255,255,255,.9); margin:12px auto 26px; max-width:520px; font-size:17px; }
-  .final .btn { background:#fff; color:var(--indigo); box-shadow:0 10px 30px -8px rgba(0,0,0,.35); }
-  .final .req { color:rgba(255,255,255,.82); }
+  .final .req { color:rgba(255,255,255,.82); margin-top:16px; }
 
   /* ---- contact / footer ---- */
   .info { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:760px; margin:0 auto; }
   .info .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px; box-shadow:var(--shadow); }
   .info h3 { font-family:var(--display); font-size:18px; margin-bottom:8px; }
   .info p { color:var(--muted); font-size:15px; }
+  .final a.link, .info a { color:inherit; }
   footer { border-top:1px solid var(--border); padding:30px 0 50px; text-align:center; color:var(--muted); font-size:13px; }
 
   /* ---- reveal anim ---- */
@@ -181,8 +169,8 @@
     .split, .features, .info { grid-template-columns:1fr; }
     .split.rev .media { order:0; }
     .hero { padding:60px 0 24px; }
-    nav .btn-ghost { display:none; }
   }
+  @media (max-width:520px) { .nav-soon { display:none; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
     .js .reveal { opacity:1; transform:none; transition:none; }
@@ -195,51 +183,59 @@
 <nav>
   <div class="wrap nav-in">
     <span class="brand"><img src="icon-192.png" alt=""> EavesText</span>
-    <a class="btn small" href="https://apps.apple.com/app/id6779409517">App Store で入手</a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ja">JA</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <!-- 公開後: <a class="btn small" href="https://apps.apple.com/app/id6779409517" data-i18n="getapp">App Store で入手</a> -->
+      <span class="soon small nav-soon" data-i18n="soon">App Store にて近日公開</span>
+    </div>
   </div>
 </nav>
 
 <main>
   <!-- HERO -->
   <header class="hero wrap">
-    <span class="eyebrow reveal">完全オンデバイス・買い切り</span>
-    <h1 class="reveal">会議の音声が、<br><span class="grad">その場で議事録に。</span></h1>
-    <p class="lead reveal">Mac で鳴っている音とあなたの声を録音し、AI が完全ローカルで文字起こし。
+    <span class="eyebrow reveal" data-i18n="eyebrow">完全オンデバイス・買い切り</span>
+    <h1 class="reveal" data-i18n="h1">会議の音声が、<br><span class="grad">その場で議事録に。</span></h1>
+    <p class="lead reveal" data-i18n="lead">Mac で鳴っている音とあなたの声を録音し、AI が完全ローカルで文字起こし。
       クラウド送信なし、bot の招待も不要。Zoom・Meet・Teams など会議アプリを選びません。</p>
     <div class="cta reveal">
-      <a class="btn" href="https://apps.apple.com/app/id6779409517">App Store で入手</a>
-      <a class="btn-ghost" href="#features">特長を見る</a>
+      <!-- 公開後: <a class="btn" href="https://apps.apple.com/app/id6779409517" data-i18n="getapp">App Store で入手</a> -->
+      <span class="soon" data-i18n="soon">App Store にて近日公開</span>
+      <a class="btn-ghost" href="#features" data-i18n="seefeatures">特長を見る</a>
     </div>
-    <p class="req reveal">macOS 26 以降 ／ Apple Silicon・Intel 対応 ／ 14 日間フル機能で無料体験</p>
-    <div class="hero-shot reveal"><img src="img/hero.jpg" alt="EavesText のキービジュアル：Mac の音声が Markdown の議事録に変換される様子" width="1600" height="893"></div>
+    <p class="req reveal" data-i18n="reqhero">macOS 26 以降 ／ Apple Silicon・Intel 対応 ／ 14 日間フル機能で無料体験</p>
+    <div class="hero-shot reveal"><img src="img/hero.jpg" alt="EavesText key visual" width="1600" height="893"></div>
   </header>
 
   <!-- FEATURES -->
   <section id="features" class="wrap">
     <div class="section-head reveal">
-      <h2>クラウドにも bot にも頼らない</h2>
-      <p>会議の文字起こしに必要なものを、すべてあなたの Mac の中だけで。</p>
+      <h2 data-i18n="feathead">クラウドにも bot にも頼らない</h2>
+      <p data-i18n="featsub">会議の文字起こしに必要なものを、すべてあなたの Mac の中だけで。</p>
     </div>
     <div class="features">
-      <figure class="feature reveal"><img src="img/feat-ondevice.jpg" alt="完全オンデバイス：録音も文字起こしも Mac の中だけ" loading="lazy"></figure>
-      <figure class="feature reveal"><img src="img/feat-nobot.jpg" alt="bot 不要：Mac の音を直接録音し、どの会議アプリでも使える" loading="lazy"></figure>
-      <figure class="feature reveal"><img src="img/feat-markdown.jpg" alt="タイムスタンプ付き Markdown 出力：Notion や Obsidian にそのまま貼れる" loading="lazy"></figure>
-      <figure class="feature reveal"><img src="img/feat-oneshot.jpg" alt="買い切り：14 日間フル機能で無料体験、その後はサブスクなしの買い切り" loading="lazy"></figure>
+      <figure class="feature reveal"><img src="img/feat-ondevice.jpg" alt="On-device" loading="lazy"></figure>
+      <figure class="feature reveal"><img src="img/feat-nobot.jpg" alt="No bot" loading="lazy"></figure>
+      <figure class="feature reveal"><img src="img/feat-markdown.jpg" alt="Markdown" loading="lazy"></figure>
+      <figure class="feature reveal"><img src="img/feat-oneshot.jpg" alt="One-time purchase" loading="lazy"></figure>
     </div>
   </section>
 
   <!-- WORKFLOW -->
   <section class="wrap">
     <div class="split">
-      <div class="media reveal"><img src="img/workflow.jpg" alt="手書きの走り書きが、整った Markdown 議事録に変わる様子" loading="lazy" width="1400" height="781"></div>
+      <div class="media reveal"><img src="img/workflow.jpg" alt="Before / after" loading="lazy" width="1400" height="781"></div>
       <div class="reveal">
-        <h2>録音して、<br>停止するだけ。</h2>
-        <p>「録音を開始」を押して、会議が終わったら「停止」。それだけで、相手の声とあなたの声が
+        <h2 data-i18n="wfh2">録音して、<br>停止するだけ。</h2>
+        <p data-i18n="wfp">「録音を開始」を押して、会議が終わったら「停止」。それだけで、相手の声とあなたの声が
           タイムスタンプ付きの議事録になります。</p>
         <ul class="ticks">
-          <li>システム音声とマイクを同時録音（自分／相手が分かれる）</li>
-          <li>録音中から逐次文字起こし。長い会議でも停止直後に完成</li>
-          <li>過去の録音はキーワードで全文検索</li>
+          <li data-i18n="wfli1">システム音声とマイクを同時録音（自分／相手が分かれる）</li>
+          <li data-i18n="wfli2">録音中から逐次文字起こし。長い会議でも停止直後に完成</li>
+          <li data-i18n="wfli3">過去の録音はキーワードで全文検索</li>
         </ul>
       </div>
     </div>
@@ -248,15 +244,15 @@
   <!-- COMPARISON -->
   <section class="wrap">
     <div class="split rev">
-      <div class="media reveal"><img src="img/comparison.jpg" alt="クラウド型ツールと EavesText の比較。EavesText はオンデバイス・bot 不要・買い切り" loading="lazy" width="1047" height="1300"></div>
+      <div class="media reveal"><img src="img/comparison.jpg" alt="On-device vs cloud" loading="lazy" width="1047" height="1300"></div>
       <div class="reveal">
-        <h2>なぜ<br>オンデバイスなのか</h2>
-        <p>録音も文字起こしも、あなたの Mac の中だけで完結します。音声やテキストが外部サーバーへ
+        <h2 data-i18n="cmph2">なぜ<br>オンデバイスなのか</h2>
+        <p data-i18n="cmpp">録音も文字起こしも、あなたの Mac の中だけで完結します。音声やテキストが外部サーバーへ
           送られることはありません。社外秘の会議や個人的なメモにも安心して使えます。</p>
         <ul class="ticks">
-          <li>音声をクラウドにアップロードしない</li>
-          <li>会議に bot を招待しない</li>
-          <li>月額課金ではなく買い切り</li>
+          <li data-i18n="cmpli1">音声をクラウドにアップロードしない</li>
+          <li data-i18n="cmpli2">会議に bot を招待しない</li>
+          <li data-i18n="cmpli3">月額課金ではなく買い切り</li>
         </ul>
       </div>
     </div>
@@ -264,33 +260,31 @@
 
   <!-- FAQ -->
   <section id="faq" class="wrap">
-    <div class="section-head reveal">
-      <h2>よくある質問</h2>
-    </div>
+    <div class="section-head reveal"><h2 data-i18n="faqhead">よくある質問</h2></div>
     <div class="faq">
       <details class="card reveal">
-        <summary>録音した音声はどこかに送信されますか？</summary>
-        <div class="a">いいえ。録音・文字起こし・保存はすべてあなたの Mac の中だけで行われます（macOS 内蔵のオンデバイス音声認識を使用）。音声やテキストがクラウドへ送信されることはありません。</div>
+        <summary data-i18n="q1">録音した音声はどこかに送信されますか？</summary>
+        <div class="a" data-i18n="a1">いいえ。録音・文字起こし・保存はすべてあなたの Mac の中だけで行われます（macOS 内蔵のオンデバイス音声認識を使用）。音声やテキストがクラウドへ送信されることはありません。</div>
       </details>
       <details class="card reveal">
-        <summary>会議アプリとの連携設定は必要ですか？</summary>
-        <div class="a">不要です。Mac 上で再生されている音声を直接キャプチャするため、どの会議アプリでもそのまま使えます。Bot の招待も要りません。</div>
+        <summary data-i18n="q2">会議アプリとの連携設定は必要ですか？</summary>
+        <div class="a" data-i18n="a2">不要です。Mac 上で再生されている音声を直接キャプチャするため、どの会議アプリでもそのまま使えます。Bot の招待も要りません。</div>
       </details>
       <details class="card reveal">
-        <summary>イヤホンで会議していても相手の声を録音できますか？</summary>
-        <div class="a">できます。スピーカーの音をマイクで拾う方式ではなく、音声データを直接取得するため、イヤホン使用時もクリアに録音されます。</div>
+        <summary data-i18n="q3">イヤホンで会議していても相手の声を録音できますか？</summary>
+        <div class="a" data-i18n="a3">できます。スピーカーの音をマイクで拾う方式ではなく、音声データを直接取得するため、イヤホン使用時もクリアに録音されます。</div>
       </details>
       <details class="card reveal">
-        <summary>必要な権限は何ですか？</summary>
-        <div class="a">マイクと「画面収録とシステム音声の録音」の許可が必要です。いずれも録音を開始するときにのみ使用され、録音中はメニューバーに常にインジケータが表示されます。</div>
+        <summary data-i18n="q4">必要な権限は何ですか？</summary>
+        <div class="a" data-i18n="a4">マイクと「画面収録とシステム音声の録音」の許可が必要です。いずれも録音を開始するときにのみ使用され、録音中はメニューバーに常にインジケータが表示されます。</div>
       </details>
       <details class="card reveal">
-        <summary>長時間の会議でも使えますか？</summary>
-        <div class="a">使えます。録音は一定時間ごとに区切って逐次文字起こしされるため、数時間の会議でも停止後すぐに議事録が完成します。</div>
+        <summary data-i18n="q5">長時間の会議でも使えますか？</summary>
+        <div class="a" data-i18n="a5">使えます。録音は一定時間ごとに区切って逐次文字起こしされるため、数時間の会議でも停止後すぐに議事録が完成します。</div>
       </details>
       <details class="card reveal">
-        <summary>料金は？対応環境は？</summary>
-        <div class="a">本体は無料で、初回入手から 14 日間はフル機能をお試しいただけます。その後は買い切り（サブスクではありません）で全機能を解放できます。動作環境は macOS 26 以降（Apple Silicon / Intel 両対応）です。</div>
+        <summary data-i18n="q6">料金は？対応環境は？</summary>
+        <div class="a" data-i18n="a6">本体は無料で、初回入手から 14 日間はフル機能をお試しいただけます。その後は買い切り（サブスクではありません）で全機能を解放できます。動作環境は macOS 26 以降（Apple Silicon / Intel 両対応）です。</div>
       </details>
     </div>
   </section>
@@ -298,10 +292,11 @@
   <!-- FINAL CTA -->
   <section class="wrap">
     <div class="final reveal">
-      <h2>会議の議事録を、もう手で書かない。</h2>
-      <p>14 日間フル機能で無料体験。クラウド送信なし・bot 不要・買い切り。</p>
-      <a class="btn" href="https://apps.apple.com/app/id6779409517">App Store で入手</a>
-      <p class="req">macOS 26 以降 ／ Apple Silicon・Intel 対応</p>
+      <h2 data-i18n="finalh2">会議の議事録を、もう手で書かない。</h2>
+      <p data-i18n="finalp">14 日間フル機能で無料体験。クラウド送信なし・bot 不要・買い切り。</p>
+      <!-- 公開後: <a class="btn" href="https://apps.apple.com/app/id6779409517" data-i18n="getapp">App Store で入手</a> -->
+      <span class="soon" data-i18n="soon">App Store にて近日公開</span>
+      <p class="req" data-i18n="finalreq">macOS 26 以降 ／ Apple Silicon・Intel 対応</p>
     </div>
   </section>
 
@@ -309,12 +304,12 @@
   <section class="wrap">
     <div class="info">
       <div class="card reveal">
-        <h3>お問い合わせ</h3>
-        <p>不具合報告・ご要望・その他のお問い合わせは <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a> までお願いします。</p>
+        <h3 data-i18n="contacth">お問い合わせ</h3>
+        <p data-i18n="contactp">不具合報告・ご要望・その他のお問い合わせは <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a> までお願いします。</p>
       </div>
       <div class="card reveal">
-        <h3>プライバシー</h3>
-        <p><a href="privacy.html">プライバシーポリシー / Privacy Policy</a> をご確認ください。EavesText はデータを収集しません。</p>
+        <h3 data-i18n="privacyh">プライバシー</h3>
+        <p data-i18n="privacyp"><a href="privacy.html">プライバシーポリシー / Privacy Policy</a> をご確認ください。EavesText はデータを収集しません。</p>
       </div>
     </div>
   </section>
@@ -323,6 +318,78 @@
 <footer>&copy; 2026 Kazuhiro Kotsutsumi</footer>
 
 <script>
+  /* ---- i18n: 日本語は HTML 既定値、英語は辞書で差し替え ---- */
+  (function () {
+    var EN = {
+      soon: "Coming soon to the App Store",
+      getapp: "Download on the App Store",
+      eyebrow: "Fully on-device · One-time purchase",
+      h1: 'Meeting audio,<br><span class="grad">into Markdown minutes.</span>',
+      lead: "EavesText records your Mac's audio and your voice, then transcribes locally with on-device AI. No cloud upload, no bot to invite — it works with Zoom, Meet, Teams and any meeting app.",
+      seefeatures: "See features",
+      reqhero: "macOS 26 or later · Apple Silicon & Intel · 14-day full free trial",
+      feathead: "No cloud. No bots.",
+      featsub: "Everything you need to transcribe meetings — all inside your Mac.",
+      wfh2: "Just record,<br>then stop.",
+      wfp: "Press Start, and Stop when the meeting ends. That's it — both sides of the conversation become a timestamped transcript.",
+      wfli1: "Records system audio and your mic at once (you vs. the other side)",
+      wfli2: "Transcribes while you record — long meetings finish right after you stop",
+      wfli3: "Full-text search across all past recordings",
+      cmph2: "Why<br>on-device?",
+      cmpp: "Recording and transcription happen entirely on your Mac. Audio and text never go to any server, so confidential meetings stay confidential.",
+      cmpli1: "No audio uploaded to the cloud",
+      cmpli2: "No bot invited to your meeting",
+      cmpli3: "One-time purchase, not a subscription",
+      faqhead: "FAQ",
+      q1: "Is my recorded audio sent anywhere?",
+      a1: "No. Recording, transcription and storage all happen entirely on your Mac (using macOS's built-in on-device speech recognition). No audio or text is ever sent to the cloud.",
+      q2: "Do I need to set up an integration with my meeting app?",
+      a2: "No. EavesText captures the audio playing on your Mac directly, so it works with any meeting app as-is. There's no bot to invite either.",
+      q3: "Can it record the other side even when I use earphones?",
+      a3: "Yes. It captures the audio data directly rather than picking up speaker sound with a mic, so the other side is recorded clearly even with earphones.",
+      q4: "What permissions are required?",
+      a4: "Microphone and \"Screen & System Audio Recording\" permissions. Both are used only when you start recording, and an indicator is always shown in the menu bar while recording.",
+      q5: "Does it work for long meetings?",
+      a5: "Yes. Recording is split into chunks and transcribed as you go, so even multi-hour meetings produce a finished transcript right after you stop.",
+      q6: "What's the price and what does it require?",
+      a6: "The app is free with a 14-day full-feature trial from first launch. After that, a one-time purchase (not a subscription) unlocks everything. Requires macOS 26 or later (Apple Silicon / Intel).",
+      finalh2: "Never hand-write meeting minutes again.",
+      finalp: "14-day full free trial. No cloud, no bots, one-time purchase.",
+      finalreq: "macOS 26 or later · Apple Silicon & Intel",
+      contacth: "Contact",
+      contactp: 'For bug reports, requests, or any questions, please email <a href="mailto:kotsutsumi@gmail.com">kotsutsumi@gmail.com</a>.',
+      privacyh: "Privacy",
+      privacyp: 'See the <a href="privacy.html">Privacy Policy</a>. EavesText collects no data.'
+    };
+
+    var nodes = document.querySelectorAll('[data-i18n]');
+    var JA = {};
+    nodes.forEach(function (n) { JA[n.getAttribute('data-i18n')] = n.innerHTML; });
+
+    function apply(lang) {
+      var dict = (lang === 'en') ? EN : JA;
+      nodes.forEach(function (n) {
+        var v = dict[n.getAttribute('data-i18n')];
+        if (v != null) n.innerHTML = v;
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('et_lang', lang); } catch (e) {}
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem('et_lang'); } catch (e) {}
+    var initial = saved || (((navigator.language || '').toLowerCase().indexOf('ja') === 0) ? 'ja' : 'en');
+
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-lang')); });
+    });
+    apply(initial);
+  })();
+
+  /* ---- scroll reveal ---- */
   (function () {
     var els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
